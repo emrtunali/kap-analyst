@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>KAP Analyst</title>
+<style>
+  :root { --bg:#f7f7f5; --card:#fff; --ink:#1d1d1b; --muted:#6b6b66; --line:#e3e2dc; --accent:#0b5cad; }
+  @media (prefers-color-scheme: dark) { :root { --bg:#141413; --card:#1e1e1c; --ink:#ecebe6; --muted:#9a998f; --line:#33322e; --accent:#6aa7ff; } }
+  * { box-sizing: border-box; }
+  body { margin:0; font:15px/1.55 system-ui, -apple-system, "Segoe UI", sans-serif; background:var(--bg); color:var(--ink); }
+  main { max-width: 860px; margin: 0 auto; padding: 32px 16px 64px; }
+  h1 { font-size: 22px; margin: 0 0 4px; }
+  .sub { color: var(--muted); margin: 0 0 24px; }
+  form { display:flex; gap:8px; }
+  input { flex:1; padding:12px 14px; border:1px solid var(--line); border-radius:10px; background:var(--card); color:var(--ink); font-size:15px; }
+  button { padding:0 18px; border:0; border-radius:10px; background:var(--accent); color:#fff; font-weight:600; cursor:pointer; }
+  .examples { display:flex; flex-wrap:wrap; gap:6px; margin:12px 0 24px; }
+  .examples button { background:transparent; color:var(--accent); border:1px solid var(--line); font-weight:500; padding:6px 10px; font-size:13px; }
+  .card { background:var(--card); border:1px solid var(--line); border-radius:12px; padding:16px 18px; margin-bottom:12px; white-space:pre-wrap; }
+  .meta { color:var(--muted); font-size:13px; margin-top:8px; }
+  .cite { display:inline-block; font-size:12px; border:1px solid var(--line); border-radius:6px; padding:1px 6px; margin:4px 4px 0 0; color:var(--muted); text-decoration:none; }
+  .docs { color:var(--muted); font-size:13px; margin-top:32px; }
+</style>
+</head>
+<body>
+<main>
+  <h1>KAP Analyst</h1>
+  <p class="sub">Ask about Borsa İstanbul disclosures. Every answer cites the PDF page it came from.</p>
+  <form id="f"><input id="q" placeholder="ör. THY'nin 2024 net kâr marjı nedir?" autocomplete="off"><button>Ask</button></form>
+  <div class="examples" id="ex"></div>
+  <div id="out"></div>
+  <div class="docs" id="docs"></div>
+</main>
+<script>
+const examples = ["THY'nin 2024 net kâr marjı nedir?", "BİM 2024'te kaç yeni mağaza açtı?",
+  "ASELSAN'ın sipariş bakiyesi ne kadar?", "How much did Turkish Airlines spend on fuel in 2024?"];
+const $ = (id) => document.getElementById(id);
+let docs = {};
+examples.forEach(e => { const b = document.createElement("button"); b.type = "button"; b.textContent = e;
+  b.onclick = () => { $("q").value = e; ask(); }; $("ex").appendChild(b); });
+fetch("/api/documents").then(r => r.json()).then(ds => { ds.forEach(d => docs[d.doc_id] = d);
+  $("docs").textContent = "Indexed: " + ds.map(d => `${d.ticker} — ${d.title}`).join(" · "); });
+$("f").onsubmit = (e) => { e.preventDefault(); ask(); };
+async function ask() {
+  const q = $("q").value.trim(); if (!q) return;
+  $("out").innerHTML = '<div class="card">Thinking…</div>';
+  const r = await fetch("/api/ask", { method: "POST", headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ question: q }) });
+  if (!r.ok) { $("out").innerHTML = `<div class="card">Error ${r.status}</div>`; return; }
+  const res = await r.json();
+  const card = document.createElement("div"); card.className = "card"; card.textContent = res.answer;
+  const seen = new Set(); const meta = document.createElement("div"); meta.className = "meta";
+  (res.citations || []).forEach(c => { const id = c.doc_id || Object.keys(docs).find(k => docs[k].kind === "financial_statements");
+    const key = id + c.page; if (seen.has(key) || !docs[id]) return; seen.add(key);
+    const a = document.createElement("a"); a.className = "cite"; a.target = "_blank";
+    a.href = `${docs[id].url}#page=${c.page}`; a.textContent = `${docs[id].ticker} s.${c.page}`; meta.appendChild(a); });
+  const mode = document.createElement("div"); mode.className = "meta";
+  mode.textContent = res.stop_reason === "extractive" ? "Extractive mode (set ANTHROPIC_API_KEY for the agent)"
+    : `Agent · ${res.model} · ${(res.tool_calls || []).length} tool calls`;
+  $("out").replaceChildren(card, meta, mode);
+}
+</script>
+</body>
+</html>

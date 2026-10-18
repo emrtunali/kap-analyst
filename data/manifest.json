@@ -1,0 +1,41 @@
+{
+  "description": "Source documents. PDFs are not redistributed in this repo; `kap-analyst download` fetches them from KAP (Kamuyu Aydınlatma Platformu) and verifies the SHA-256 so page-level eval labels stay valid.",
+  "documents": [
+    {
+      "doc_id": "THYAO_2024_FS",
+      "ticker": "THYAO",
+      "company": "Türk Hava Yolları A.O.",
+      "title": "Konsolide Finansal Tablolar ve Bağımsız Denetçi Raporu — 31 Aralık 2024",
+      "kind": "financial_statements",
+      "period": "FY2024",
+      "currency_unit": "milyon TL",
+      "url": "https://kap.org.tr/tr/api/file/download/4028328c950ba8c701954904c3021045",
+      "sha256": "92f44d79cad60da7b97d4da030eb5ef82c413a6e737889ba7570955c62ee55ec",
+      "pages": 101
+    },
+    {
+      "doc_id": "BIMAS_2024",
+      "ticker": "BIMAS",
+      "company": "BİM Birleşik Mağazalar A.Ş.",
+      "title": "2024 Entegre Faaliyet Raporu",
+      "kind": "annual_report",
+      "period": "FY2024",
+      "currency_unit": null,
+      "url": "https://kap.org.tr/en/api/file/download/4028328c950ba8c70195870804d86105",
+      "sha256": "5d0ab712810a4a655df13885a15980135202e974a9bead9aaababaf3f8c982db",
+      "pages": 97
+    },
+    {
+      "doc_id": "ASELS_2024",
+      "ticker": "ASELS",
+      "company": "ASELSAN Elektronik Sanayi ve Ticaret A.Ş.",
+      "title": "Yönetim Kurulu Faaliyet Raporu — 1 Ocak – 31 Aralık 2024",
+      "kind": "annual_report",
+      "period": "FY2024",
+      "currency_unit": null,
+      "url": "https://www.kap.org.tr/en/api/file/download/4028328c950ba8c701953dae7a456702",
+      "sha256": "c1175f02bab64ebd33cd96d8b83bbfec9d5fa739695a7aa342d9b990ce65028a",
+      "pages": 93
+    }
+  ]
+}

@@ -1,0 +1,228 @@
+{
+  "total": 90,
+  "correct": 90,
+  "accuracy": 1.0,
+  "items": 45,
+  "page_correct": 45,
+  "errors": [],
+  "ratios": [
+    {
+      "ratio": "gross_margin",
+      "period": "2024",
+      "value": 0.191712,
+      "formula": "Brüt kâr / Hasılat",
+      "inputs": [
+        {
+          "item": "gross_profit",
+          "period": "2024",
+          "value": 142908.0,
+          "page": 11
+        },
+        {
+          "item": "revenue",
+          "period": "2024",
+          "value": 745430.0,
+          "page": 11
+        }
+      ]
+    },
+    {
+      "ratio": "operating_margin",
+      "period": "2024",
+      "value": 0.107848,
+      "formula": "Esas faaliyet kârı / Hasılat",
+      "inputs": [
+        {
+          "item": "operating_profit",
+          "period": "2024",
+          "value": 80393.0,
+          "page": 11
+        },
+        {
+          "item": "revenue",
+          "period": "2024",
+          "value": 745430.0,
+          "page": 11
+        }
+      ]
+    },
+    {
+      "ratio": "net_margin",
+      "period": "2024",
+      "value": 0.152069,
+      "formula": "Dönem kârı / Hasılat",
+      "inputs": [
+        {
+          "item": "net_profit",
+          "period": "2024",
+          "value": 113357.0,
+          "page": 11
+        },
+        {
+          "item": "revenue",
+          "period": "2024",
+          "value": 745430.0,
+          "page": 11
+        }
+      ]
+    },
+    {
+      "ratio": "roe",
+      "period": "2024",
+      "value": 0.199408,
+      "formula": "Ana ortaklık payı net kâr / Ortalama ana ortaklık özkaynakları",
+      "inputs": [
+        {
+          "item": "net_profit_parent",
+          "period": "2024",
+          "value": 113378.0,
+          "page": 11
+        },
+        {
+          "item": "equity_parent",
+          "period": "2024",
+          "value": 679887.0,
+          "page": 10
+        },
+        {
+          "item": "equity_parent",
+          "period": "2023",
+          "value": 457257.0,
+          "page": 10
+        }
+      ]
+    },
+    {
+      "ratio": "roa",
+      "period": "2024",
+      "value": 0.092591,
+      "formula": "Dönem kârı / Ortalama toplam varlıklar",
+      "inputs": [
+        {
+          "item": "net_profit",
+          "period": "2024",
+          "value": 113357.0,
+          "page": 11
+        },
+        {
+          "item": "total_assets",
+          "period": "2024",
+          "value": 1399606.0,
+          "page": 9
+        },
+        {
+          "item": "total_assets",
+          "period": "2023",
+          "value": 1048943.0,
+          "page": 9
+        }
+      ]
+    },
+    {
+      "ratio": "current_ratio",
+      "period": "2024",
+      "value": 1.007001,
+      "formula": "Dönen varlıklar / Kısa vadeli yükümlülükler",
+      "inputs": [
+        {
+          "item": "current_assets",
+          "period": "2024",
+          "value": 341910.0,
+          "page": 9
+        },
+        {
+          "item": "current_liabilities",
+          "period": "2024",
+          "value": 339533.0,
+          "page": 10
+        }
+      ]
+    },
+    {
+      "ratio": "liabilities_to_equity",
+      "period": "2024",
+      "value": 1.058208,
+      "formula": "(Kısa + uzun vadeli yükümlülükler) / Toplam özkaynaklar",
+      "inputs": [
+        {
+          "item": "current_liabilities",
+          "period": "2024",
+          "value": 339533.0,
+          "page": 10
+        },
+        {
+          "item": "non_current_liabilities",
+          "period": "2024",
+          "value": 380061.0,
+          "page": 10
+        },
+        {
+          "item": "total_equity",
+          "period": "2024",
+          "value": 680012.0,
+          "page": 10
+        }
+      ]
+    },
+    {
+      "ratio": "revenue_growth",
+      "period": "2024",
+      "value": 0.477861,
+      "formula": "Hasılat (t) / Hasılat (t-1) − 1",
+      "inputs": [
+        {
+          "item": "revenue",
+          "period": "2024",
+          "value": 745430.0,
+          "page": 11
+        },
+        {
+          "item": "revenue",
+          "period": "2023",
+          "value": 504398.0,
+          "page": 11
+        }
+      ]
+    },
+    {
+      "ratio": "capex_to_revenue",
+      "period": "2024",
+      "value": 0.058977,
+      "formula": "|Duran varlık alımları| / Hasılat",
+      "inputs": [
+        {
+          "item": "capex",
+          "period": "2024",
+          "value": -43963.0,
+          "page": 13
+        },
+        {
+          "item": "revenue",
+          "period": "2024",
+          "value": 745430.0,
+          "page": 11
+        }
+      ]
+    },
+    {
+      "ratio": "cash_conversion",
+      "period": "2024",
+      "value": 1.196044,
+      "formula": "İşletme faaliyetlerinden net nakit / Dönem kârı",
+      "inputs": [
+        {
+          "item": "operating_cash_flow",
+          "period": "2024",
+          "value": 135580.0,
+          "page": 13
+        },
+        {
+          "item": "net_profit",
+          "period": "2024",
+          "value": 113357.0,
+          "page": 11
+        }
+      ]
+    }
+  ]
+}
